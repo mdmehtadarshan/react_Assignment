@@ -1,5 +1,4 @@
-﻿import { post } from 'jquery';
-import React from 'react';
+﻿import React from 'react';
 
 export class InsertProduct extends React.Component {
     static displayName = InsertProduct.name;
@@ -14,7 +13,7 @@ export class InsertProduct extends React.Component {
         this.setState(...changeObject)
     }
 
-    componentdidmount() {
+    async componentDidMount() {
         //here code for fetch cats.
         const response = await fetch('http://localhost:62330/api/Pro_category');
         const data = await response.json();
@@ -28,7 +27,7 @@ export class InsertProduct extends React.Component {
             cat: this.state.catId,
             isactive: this.state.proIsActive,
             desc: this.state.proDesc,
-            cost: this.stat.cost
+            cost: this.state.cost
         };
         const headers = {
             "accept": "application/json",
@@ -36,7 +35,7 @@ export class InsertProduct extends React.Component {
         };
         const dataTosend = JSON.stringify(postData);
         console.log(dataTosend);
-        const uri = 'http://localhost:62330/api/Pro_category';
+        const uri = 'http://localhost:62330/api/Products';
         fetch(uri, { method: 'POST', body: dataTosend, headers: headers }).catch(e => console.log(e));
         console.log(this.state);
         e.preventDefault();
@@ -49,15 +48,46 @@ export class InsertProduct extends React.Component {
                     <div className="col-md-8">
                         <form className="d-flex flex-column">
                             <legend className="text-center">Insert Category</legend>
-                            <label htmlFor="cat_nm">
-                                Category Name:
+                            <label htmlFor="pro_nm">
+                                Product Name:
                                 <input
-                                    name="cat_nm"
-                                    id="cat_nm"
+                                    name="pro_nm"
+                                    id="pro_nm"
                                     type="text"
                                     className="form-control"
-                                    value={this.state.catName}
-                                    onChange={(e) => this.setState({ catName: e.target.value })}
+                                    value={this.state.proName}
+                                    onChange={(e) => this.setState({ proName: e.target.value })}
+                                    required
+                                />
+                            </label>
+                            <label htmlFor="cat_id">
+                                Category:
+                                <select value={this.state.cat_id} className="form-control">
+                                {this.state.categories.length > 0 ? this.state.categories.map(cat =>
+                                    <option value={cat.cat_id}>{cat.cat_nm}</option>) : null}
+                                </select>
+                            </label>
+                            <label htmlFor="cost">
+                                Cost:
+                                <input
+                                    name="cost"
+                                    id="cost"
+                                    type="number"
+                                    className="form-control"
+                                    value={this.state.cost}
+                                    onChange={(e) => this.setState({ cost: e.target.value })}
+                                    required
+                                />
+                            </label>
+                            <label htmlFor="description">
+                                Description:
+                                <input
+                                    name="description"
+                                    id="description"
+                                    type="text"
+                                    className="form-control"
+                                    value={this.state.proDesc}
+                                    onChange={(e) => this.setState({ proDesc: e.target.value })}
                                     required
                                 />
                             </label>
@@ -68,25 +98,8 @@ export class InsertProduct extends React.Component {
                                     id="a_ia"
                                     type="checkbox"
                                     className="form-control"
-                                    value={this.state.catIsActive}
-                                    onChange={(e) => this.setState({ catIsActive: e.target.value })}
-                                />
-                            </label>
-                            <select value={this.state.catId}>
-                                {this.state.categories.length > 0 ? this.state.categories.map(cat =>
-                                    <option value={cat.catId} >{cat.catName}</option>) : null}
-                            </select>
-
-                            <label htmlFor="description">
-                                Description:
-                                <input
-                                    name="description"
-                                    id="description"
-                                    type="text"
-                                    className="form-control"
-                                    value={this.state.catDesc}
-                                    onChange={(e) => this.setState({ catDesc: e.target.value })}
-                                    required
+                                    value={this.state.proIsActive}
+                                    onChange={(e) => this.setState({ proIsActive: e.target.value })}
                                 />
                             </label>
                             <button className="btn btn-primary" type='button' onClick={(e) => this.create(e)}>Insert</button>

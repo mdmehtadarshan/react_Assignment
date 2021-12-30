@@ -46,13 +46,19 @@ export class NavMenu extends Component {
                     <NavLink tag={Link} className="text-dark" to="/fetch-pro-cat">Fetch category</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink tag={Link} className="text-dark" to="/e-d-pro-cat">Delete category</NavLink>
+                    <NavLink tag={Link} className="text-dark" to="/e-d-pro-cat">Delete-Edit category</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink tag={Link} className="text-dark" to="/e-d-product">Delete product</NavLink>
+                    <NavLink tag={Link} className="text-dark" to="/e-d-product">Delete-Edit product</NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink tag={Link} className="text-dark" to="/insert-category">Insert category</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} className="text-dark" to="/insert-product">Insert product</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} className="text-dark" to="/search">Search</NavLink>
                 </NavItem>
 
               </ul>

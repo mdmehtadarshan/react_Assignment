@@ -9,6 +9,8 @@ import { FetchProduct } from './components/FetchProduct';
 import { EDProCat } from './components/EDProCat';
 import { EDProduct } from './components/EDProduct';
 import { InsertCategory } from './components/InsertCategory';
+import { InsertProduct } from './components/InsertProduct';
+import { Search } from './components/Search';
 import './custom.css'
 
 export default class App extends Component {
@@ -25,6 +27,8 @@ export default class App extends Component {
                 <Route path='/e-d-pro-cat' component={EDProCat} />
                 <Route path='/e-d-product' component={EDProduct} />
                 <Route path='/insert-category' component={InsertCategory} />
+                <Route path='/insert-product' component={InsertProduct} />
+                <Route path='/search' component={Search} />
             </Layout>
         );
     }
